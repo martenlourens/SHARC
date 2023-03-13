@@ -1,0 +1,16 @@
+# VSCode ignores
+.vscode
+
+# Python ignores
+**/__pycache__
+**/*.egg-info
+**/.venv
+
+# build directory ignores
+**/[Bb]uild*
+
+# Additional ignores
+CPz_analysis
+loss_function_performance
+runs
+tests

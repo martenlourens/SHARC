@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API &mdash; SHARC 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/SHARC_logo.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to SHARC’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/SHARC_logo_rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-SHARC.optimization_routines">SDR Optimization Routines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.optimization_routines.optimize_DR"><code class="docutils literal notranslate"><span class="pre">optimize_DR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.optimization_routines.optimize_LGC"><code class="docutils literal notranslate"><span class="pre">optimize_LGC()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.optimization_routines.save_results"><code class="docutils literal notranslate"><span class="pre">save_results()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-SHARC.metrics">SDR Optimization Metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.metrics.DR_MetricsV1"><code class="docutils literal notranslate"><span class="pre">DR_MetricsV1</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.DR_MetricsV1.metric_total"><code class="docutils literal notranslate"><span class="pre">DR_MetricsV1.metric_total()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.metrics.DR_MetricsV2"><code class="docutils literal notranslate"><span class="pre">DR_MetricsV2</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.DR_MetricsV2.metric_total"><code class="docutils literal notranslate"><span class="pre">DR_MetricsV2.metric_total()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.metrics.LGC_Metrics"><code class="docutils literal notranslate"><span class="pre">LGC_Metrics</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.LGC_Metrics.metric_total"><code class="docutils literal notranslate"><span class="pre">LGC_Metrics.metric_total()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.metrics.Metrics"><code class="docutils literal notranslate"><span class="pre">Metrics</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.fit"><code class="docutils literal notranslate"><span class="pre">Metrics.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.get_summary"><code class="docutils literal notranslate"><span class="pre">Metrics.get_summary()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_continuity"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_continuity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_distance_consistency"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_distance_consistency()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_distribution_consistency"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_distribution_consistency()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_jaccard_set_distance"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_jaccard_set_distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_neighborhood_hit"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_neighborhood_hit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_normalized_stress"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_normalized_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_shepard_goodness"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_shepard_goodness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_trustworthiness"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_trustworthiness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.print_summary"><code class="docutils literal notranslate"><span class="pre">Metrics.print_summary()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.shepard_diagram"><code class="docutils literal notranslate"><span class="pre">Metrics.shepard_diagram()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-SHARC.nn_models">NNP Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.nn_models.DenseBlock"><code class="docutils literal notranslate"><span class="pre">DenseBlock</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.nn_models.DenseBlock.call"><code class="docutils literal notranslate"><span class="pre">DenseBlock.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.nn_models.NNPModelBackboneV1"><code class="docutils literal notranslate"><span class="pre">NNPModelBackboneV1</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.nn_models.NNPModelBackboneV1.call"><code class="docutils literal notranslate"><span class="pre">NNPModelBackboneV1.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.nn_models.NNPModelBackboneV2"><code class="docutils literal notranslate"><span class="pre">NNPModelBackboneV2</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.nn_models.NNPModelBackboneV2.call"><code class="docutils literal notranslate"><span class="pre">NNPModelBackboneV2.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.nn_models.construct_NNPModel"><code class="docutils literal notranslate"><span class="pre">construct_NNPModel()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-SHARC.nn_training_utils">NNP Training Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.nn_training_utils.train_nnp"><code class="docutils literal notranslate"><span class="pre">train_nnp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-SHARC.loss_functions">Loss Function Definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.loss_functions.AlternativeMeanAbsoluteError"><code class="docutils literal notranslate"><span class="pre">AlternativeMeanAbsoluteError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.loss_functions.AlternativeMeanAbsoluteError.call"><code class="docutils literal notranslate"><span class="pre">AlternativeMeanAbsoluteError.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.loss_functions.AlternativeMeanSquaredError"><code class="docutils literal notranslate"><span class="pre">AlternativeMeanSquaredError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.loss_functions.AlternativeMeanSquaredError.call"><code class="docutils literal notranslate"><span class="pre">AlternativeMeanSquaredError.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.loss_functions.AlternativeMedianAbsoluteError"><code class="docutils literal notranslate"><span class="pre">AlternativeMedianAbsoluteError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.loss_functions.AlternativeMedianAbsoluteError.call"><code class="docutils literal notranslate"><span class="pre">AlternativeMedianAbsoluteError.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.loss_functions.AlternativeMedianSquaredError"><code class="docutils literal notranslate"><span class="pre">AlternativeMedianSquaredError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.loss_functions.AlternativeMedianSquaredError.call"><code class="docutils literal notranslate"><span class="pre">AlternativeMedianSquaredError.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.loss_functions.MedianAbsoluteError"><code class="docutils literal notranslate"><span class="pre">MedianAbsoluteError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.loss_functions.MedianAbsoluteError.call"><code class="docutils literal notranslate"><span class="pre">MedianAbsoluteError.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.loss_functions.MedianSquaredError"><code class="docutils literal notranslate"><span class="pre">MedianSquaredError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.loss_functions.MedianSquaredError.call"><code class="docutils literal notranslate"><span class="pre">MedianSquaredError.call()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-SHARC.classifiers">SDR-NNP Classifier</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.classifiers.SDRNNPClassifier"><code class="docutils literal notranslate"><span class="pre">SDRNNPClassifier</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.classifiers.SDRNNPClassifier.fit"><code class="docutils literal notranslate"><span class="pre">SDRNNPClassifier.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.classifiers.SDRNNPClassifier.plot_classifier_decision_boundaries"><code class="docutils literal notranslate"><span class="pre">SDRNNPClassifier.plot_classifier_decision_boundaries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.classifiers.SDRNNPClassifier.plot_projection"><code class="docutils literal notranslate"><span class="pre">SDRNNPClassifier.plot_projection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.classifiers.SDRNNPClassifier.predict"><code class="docutils literal notranslate"><span class="pre">SDRNNPClassifier.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.classifiers.SDRNNPClassifier.predict_proba"><code class="docutils literal notranslate"><span class="pre">SDRNNPClassifier.predict_proba()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-SHARC.consolidation">Consolidation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.consolidation.alternative_consolidation"><code class="docutils literal notranslate"><span class="pre">alternative_consolidation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.consolidation.average_probability_consolidation"><code class="docutils literal notranslate"><span class="pre">average_probability_consolidation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.consolidation.lowest_entropy_consolidation"><code class="docutils literal notranslate"><span class="pre">lowest_entropy_consolidation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.consolidation.majority_vote_consolidation"><code class="docutils literal notranslate"><span class="pre">majority_vote_consolidation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.consolidation.multiplied_probability_consolidation"><code class="docutils literal notranslate"><span class="pre">multiplied_probability_consolidation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-SHARC.utils">Additional Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.utils.insertColors"><code class="docutils literal notranslate"><span class="pre">insertColors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.utils.writeDataset"><code class="docutils literal notranslate"><span class="pre">writeDataset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-SHARC.plot_funcs">Plot Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SHARC.plot_funcs.CustomConfusionMatrixDisplay"><code class="docutils literal notranslate"><span class="pre">CustomConfusionMatrixDisplay</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SHARC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this heading"></a></h1>
+<section id="module-SHARC.optimization_routines">
+<span id="sdr-optimization-routines"></span><h2>SDR Optimization Routines<a class="headerlink" href="#module-SHARC.optimization_routines" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="SHARC.optimization_routines.optimize_DR">
+<span class="sig-prename descclassname"><span class="pre">SHARC.optimization_routines.</span></span><span class="sig-name descname"><span class="pre">optimize_DR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">methods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['LMDS']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./settings_DR.json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.optimization_routines.optimize_DR" title="Permalink to this definition"></a></dt>
+<dd><p>Function that finds the optimal parameter set for each DR method given a parameter grid.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>X<span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>An array containing the data that needs to be projected.</p>
+</dd>
+<dt>labels<span class="classifier">array-like, shape (n_samples,), default = None</span></dt><dd><p>An array containing the labels (as numeric values) corresponding to each sample in X.
+Be sure to provide it when it is used by the optimization metric.</p>
+</dd>
+<dt>num_samples<span class="classifier">int, default = None (optional)</span></dt><dd><p>Size of the random subset of samples that will be used to find the optimal DR parameters. If <cite>None</cite> all samples will be used.
+Beware that for large datasets this may significantly slow down the optimization procedure!
+As a general recommendation one should not use significantly more than 10000 samples.</p>
+</dd>
+<dt>methods<span class="classifier">list, default = [“LMDS”] (optional)</span></dt><dd><p>A list with names of the DR methods to optimize as strings.</p>
+</dd>
+<dt>metric<span class="classifier">metrics.Metrics instance, default=None (optional)</span></dt><dd><p>A <cite>metrics.Metrics</cite> instance with a <cite>metric_total</cite> method which will be called to evaluate the DR performance for a given parameter set.
+If not provided <cite>metrics.DR_MetricsV1</cite> will be initialized and used with its default parameters.</p>
+</dd>
+<dt>storage_path<span class="classifier">str, default = “./” (optional)</span></dt><dd><p>Path to the folder in which temporary files and results will be stored.</p>
+</dd>
+<dt>param_grid<span class="classifier">str, default = “./settings_DR.json” (optional)</span></dt><dd><p>The path to a JSON file containing a <em>compact</em> parameter grid for <em>each</em> method provided in <cite>methods</cite>.</p>
+</dd>
+<dt>verbose<span class="classifier">bool, default = True (optional)</span></dt><dd><p>Controls the verbosity.</p>
+</dd>
+<dt>seed<span class="classifier">int, default = None (optional)</span></dt><dd><p>Random seed which is used by both the projection technique and for selecting a random subset of <cite>num_samples</cite>.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>best_params<span class="classifier">dict</span></dt><dd><p>Dictionary containing the best parameter sets for each DR method specified in <cite>methods</cite>.</p>
+</dd>
+<dt>best_scores<span class="classifier">list</span></dt><dd><p>List containing the best total scores for each DR method specified in <cite>methods</cite>. The scores are computed by calling <cite>metric.metric_total</cite>.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SHARC.optimization_routines.optimize_LGC">
+<span class="sig-prename descclassname"><span class="pre">SHARC.optimization_routines.</span></span><span class="sig-name descname"><span class="pre">optimize_LGC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">methods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['LMDS']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./settings_LGC.json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DR_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./best_DR_params.json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.optimization_routines.optimize_LGC" title="Permalink to this definition"></a></dt>
+<dd><p>Function that finds the optimal parameter set for each LGC method given a parameter grid.</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>X<span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>An array containing the data that needs to be projected.</p>
+</dd>
+<dt>labels<span class="classifier">array-like, shape (n_samples,), default = None</span></dt><dd><p>An array containing the labels (as numeric values) corresponding to each sample in X.
+Be sure to provide it when it is used by the optimization metric.</p>
+</dd>
+<dt>num_samples<span class="classifier">int, default = None (optional)</span></dt><dd><p>Size of the random subset of samples that will be used to find the optimal LGC parameters. If <cite>None</cite> all samples will be used.
+Beware that for large datasets this may significantly slow down the optimization procedure!
+As a general recommendation one should not use significantly more than 10000 samples.</p>
+</dd>
+<dt>methods<span class="classifier">list, default = [“LMDS”] (optional)</span></dt><dd><p>A list with names of the DR methods to use in combination with LGC as strings.</p>
+</dd>
+<dt>metric<span class="classifier">metrics.Metrics instance, default=None (optional)</span></dt><dd><p>A <cite>metrics.Metrics</cite> instance with a <cite>metric_total</cite> method which will be called to evaluate the LGC performance for a given parameter set.
+If not provided <cite>metrics.LGC_Metrics</cite> will be initialized and used with its default parameters.</p>
+</dd>
+<dt>storage_path<span class="classifier">str, default = “./” (optional)</span></dt><dd><p>Path to the folder in which temporary files and results will be stored.</p>
+</dd>
+<dt>param_grid<span class="classifier">str, default = “./settings_LGC.json” (optional)</span></dt><dd><p>The path to a JSON file containing a <em>compact</em> parameter grid for <em>each</em> method provided in <cite>methods</cite>.</p>
+</dd>
+<dt>DR_params<span class="classifier">str, default = “./best_DR_params.json” (optional)</span></dt><dd><p>The path to a JSON file containing the parameters to use for <em>each</em> DR method provided in <cite>methods</cite>.</p>
+</dd>
+<dt>verbose<span class="classifier">bool, default = True (optional)</span></dt><dd><p>Controls the verbosity.</p>
+</dd>
+<dt>seed<span class="classifier">int, default = None (optional)</span></dt><dd><p>Random seed which is used by both the projection technique and for selecting a random subset of <cite>num_samples</cite>.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>best_params<span class="classifier">dict</span></dt><dd><p>Dictionary containing the best LGC parameter set for each DR method used which were specified in <cite>methods</cite>.</p>
+</dd>
+<dt>best_scores<span class="classifier">list</span></dt><dd><p>List containing the best total scores for each DR method used which were specified in <cite>methods</cite>. The scores are computed by calling <cite>metric.metric_total</cite>.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SHARC.optimization_routines.save_results">
+<span class="sig-prename descclassname"><span class="pre">SHARC.optimization_routines.</span></span><span class="sig-name descname"><span class="pre">save_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outfile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.optimization_routines.save_results" title="Permalink to this definition"></a></dt>
+<dd><p>Function to save optimization results to a JSON file.</p>
+<section id="id3">
+<h3>Parameters<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>results<span class="classifier">dict</span></dt><dd><p>A dictionary containing the results to be saved to <cite>outfile</cite>.</p>
+</dd>
+<dt>outfile<span class="classifier">str</span></dt><dd><p>The name of the file the <cite>results</cite> should be saved to.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-SHARC.metrics">
+<span id="sdr-optimization-metrics"></span><h2>SDR Optimization Metrics<a class="headerlink" href="#module-SHARC.metrics" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.metrics.DR_MetricsV1">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.metrics.</span></span><span class="sig-name descname"><span class="pre">DR_MetricsV1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['euclidean',</span> <span class="pre">'euclidean']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.DR_MetricsV1" title="Permalink to this definition"></a></dt>
+<dd><p>Metric class for DR optimization using a metric composed of the trustworthiness, continuity, neighborhood hit and Shepard goodness metrics.
+Metric functions are inherited from the <cite>metrics.Metrics</cite> class.</p>
+<section id="id4">
+<h3>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>metric<span class="classifier">str or list, default=[“euclidean”, “euclidean”]</span></dt><dd><p>Metrics to use when computing distances in the feature space and the projection space.
+When a string is provided that same metric will be used for both the feature space and the projection space.
+Values are passed to <cite>scipy.spatial.distance.pdist</cite>.</p>
+</dd>
+<dt>k<span class="classifier">int, default=7</span></dt><dd><p>Number of nearest neighbors to consider when computing the various metrics.
+Used by <cite>metric_trustworthiness</cite>, <cite>metric_continuity</cite>, <cite>metric_jaccard_set_distance</cite>, <cite>metric_neighborhood_hit</cite> and <cite>metric_distribution_consistency</cite>.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.DR_MetricsV1.metric_total">
+<span class="sig-name descname"><span class="pre">metric_total</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.DR_MetricsV1.metric_total" title="Permalink to this definition"></a></dt>
+<dd><p>Function to compute the optimization metric.</p>
+<section id="id5">
+<h4>Returns<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
+<dl>
+<dt>total<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0, 1]\)</span> of the composite metric, i.e.:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{4}\left(\text{trustworthiness} + \text{continuity} + \text{neighborhood hit} + \text{Shepard goodness}\right)\]</div>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.metrics.DR_MetricsV2">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.metrics.</span></span><span class="sig-name descname"><span class="pre">DR_MetricsV2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['euclidean',</span> <span class="pre">'euclidean']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.DR_MetricsV2" title="Permalink to this definition"></a></dt>
+<dd><p>Metric class for DR optimization using a metric composed of only the distribution consistency metric.
+The metric function for distribution consistency is inherited from the <cite>metrics.Metrics</cite> class.</p>
+<section id="id6">
+<h3>Parameters<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>metric<span class="classifier">str or list, default=[“euclidean”, “euclidean”]</span></dt><dd><p>Metrics to use when computing distances in the feature space and the projection space.
+When a string is provided that same metric will be used for both the feature space and the projection space.
+Values are passed to <cite>scipy.spatial.distance.pdist</cite>.</p>
+</dd>
+<dt>k<span class="classifier">int, default=7</span></dt><dd><p>Number of nearest neighbors to consider when computing the various metrics.
+Used by <cite>metric_trustworthiness</cite>, <cite>metric_continuity</cite>, <cite>metric_jaccard_set_distance</cite>, <cite>metric_neighborhood_hit</cite> and <cite>metric_distribution_consistency</cite>.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.DR_MetricsV2.metric_total">
+<span class="sig-name descname"><span class="pre">metric_total</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.DR_MetricsV2.metric_total" title="Permalink to this definition"></a></dt>
+<dd><p>Function to compute the optimization metric.</p>
+<section id="id7">
+<h4>Returns<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>total<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0, 1]\)</span> of the optimization metric, i.e. distribution consistency.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.metrics.LGC_Metrics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.metrics.</span></span><span class="sig-name descname"><span class="pre">LGC_Metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'euclidean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.LGC_Metrics" title="Permalink to this definition"></a></dt>
+<dd><p>Metric class for LGC optimization using a metric composed of only the distribution consistency metric.
+The metric function for distribution consistency is inherited from the <cite>metrics.Metrics</cite> class.</p>
+<section id="id8">
+<h3>Parameters<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>metric<span class="classifier">str or list, default=[“euclidean”, “euclidean”]</span></dt><dd><p>Metrics to use when computing distances in the feature space and the projection space.
+When a string is provided that same metric will be used for both the feature space and the projection space.
+Values are passed to <cite>scipy.spatial.distance.pdist</cite>.</p>
+</dd>
+<dt>k<span class="classifier">int, default=7</span></dt><dd><p>Number of nearest neighbors to consider when computing the various metrics.
+Used by <cite>metric_trustworthiness</cite>, <cite>metric_continuity</cite>, <cite>metric_jaccard_set_distance</cite>, <cite>metric_neighborhood_hit</cite> and <cite>metric_distribution_consistency</cite>.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.LGC_Metrics.metric_total">
+<span class="sig-name descname"><span class="pre">metric_total</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.LGC_Metrics.metric_total" title="Permalink to this definition"></a></dt>
+<dd><p>Function to compute the optimization metric.</p>
+<section id="id9">
+<h4>Returns<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>total<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0, 1]\)</span> of the optimization metric, i.e. distribution consistency.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.metrics.</span></span><span class="sig-name descname"><span class="pre">Metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['euclidean',</span> <span class="pre">'euclidean']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics" title="Permalink to this definition"></a></dt>
+<dd><p>A base class for the computation of some basic metrics that quantify the performance of DR algorithms.</p>
+<section id="id10">
+<h3>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>metric<span class="classifier">str or list, default=[“euclidean”, “euclidean”]</span></dt><dd><p>Metrics to use when computing distances in the feature space and the projection space.
+When a string is provided that same metric will be used for both the feature space and the projection space.
+Values are passed to <cite>scipy.spatial.distance.pdist</cite>.</p>
+</dd>
+<dt>k<span class="classifier">int, default=7</span></dt><dd><p>Number of nearest neighbors to consider when computing the various metrics.
+Used by <cite>metric_trustworthiness</cite>, <cite>metric_continuity</cite>, <cite>metric_jaccard_set_distance</cite>, <cite>metric_neighborhood_hit</cite> and <cite>metric_distribution_consistency</cite>.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.fit" title="Permalink to this definition"></a></dt>
+<dd><p>Fit the provided data to the metric instance.
+That is, for both <cite>X</cite> and <cite>Y</cite> compact distance matrices and nearest neighbor sets are computed.</p>
+<section id="id11">
+<h4>Parameters<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>X<span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>Feature space dataset.</p>
+</dd>
+<dt>Y<span class="classifier">array-like, shape (n_samples, n_embedding_dimensions)</span></dt><dd><p>Projection space dataset.</p>
+</dd>
+<dt>labels<span class="classifier">array-like, shape (n_samples, ), default=None</span></dt><dd><p>An array of label values for each sample. Only required for purity/VSC metrics such as <cite>metric_neighborhood_hit</cite>, <cite>metric_distance_consistency</cite> and <cite>metric_distribution_consistency</cite></p>
+</dd>
+</dl>
+</section>
+<section id="id12">
+<h4>Returns<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>self<span class="classifier">object</span></dt><dd><p>Returns self.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.get_summary">
+<span class="sig-name descname"><span class="pre">get_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.get_summary" title="Permalink to this definition"></a></dt>
+<dd><p>Function to get a summary of the computed metrics.</p>
+<section id="id13">
+<h4>Returns<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>summary<span class="classifier">dict</span></dt><dd><p>A dictionary containing all computed metrics and their values.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.metric_continuity">
+<span class="sig-name descname"><span class="pre">metric_continuity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.metric_continuity" title="Permalink to this definition"></a></dt>
+<dd><p>Function to compute the continuity metric which quantifies the <strong>proportion of missing neighbors</strong> in the projection.
+The functional definition reads as follows:</p>
+<div class="math notranslate nohighlight" id="equation-continuity">
+<span class="eqno">(1)<a class="headerlink" href="#equation-continuity" title="Permalink to this equation"></a></span>\[M_c(k) = 1 - \frac{2}{Nk(2N-3k-1)}\sum^{N}_{i=1}\sum_{j\in \mathcal{V}^k_i}(\hat{r}(i,j)-k)\]</div>
+<p>In this definition, <span class="math notranslate nohighlight">\(N\)</span> is the number of samples in the dataset and <span class="math notranslate nohighlight">\(k\)</span> is the number of nearest neighbors 
+to consider and should always be smaller than <span class="math notranslate nohighlight">\(N / 2\)</span> for the metric to be properly normalized.
+The set <span class="math notranslate nohighlight">\(\mathcal{V}^{k}_i\)</span> consists of the <span class="math notranslate nohighlight">\(k\)</span> nearest neighbors of sample <span class="math notranslate nohighlight">\(i\)</span> in original data space 
+that are not among the <span class="math notranslate nohighlight">\(k\)</span> data vectors after the projection. The quantity <span class="math notranslate nohighlight">\(\hat{r}(i,j)\)</span> specifies the rank of 
+the point <span class="math notranslate nohighlight">\(j\)</span> when feature vectors are based on their distance to point <span class="math notranslate nohighlight">\(i\)</span> after the projection.</p>
+<section id="id14">
+<h4>Returns<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>continuity<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0,1]\)</span> yielded by the continuity metric.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.metric_distance_consistency">
+<span class="sig-name descname"><span class="pre">metric_distance_consistency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.metric_distance_consistency" title="Permalink to this definition"></a></dt>
+<dd><p>Function to compute the distance consistency metric which measures how well separated data clusters with different labels are in the projection.
+The functional definition reads as follows:</p>
+<div class="math notranslate nohighlight" id="equation-distance-consistency">
+<span class="eqno">(2)<a class="headerlink" href="#equation-distance-consistency" title="Permalink to this equation"></a></span>\[M_{\text{DSC}} = 1 - \frac{\left|\left\{\vec{x}\in D : \text{CD}(\vec{x}, \text{centr}(\text{clabel}(\vec{x}))) \neq 1\right\}\right|}{N}\]</div>
+<p>In this definition, <span class="math notranslate nohighlight">\(N\)</span> is the number of samples in the dataset <span class="math notranslate nohighlight">\(D\)</span> and <span class="math notranslate nohighlight">\(\text{CD}(\vec{x}, \text{centr}(\text{clabel}(\vec{x})))\)</span> 
+is the so-called <em>centroid distance</em> which is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{CD}(\vec{x}, \text{centr}(\text{clabel}(\vec{x}))) =
+\begin{cases}
+    1\quad d(\vec{x},\text{centr}(\text{clabel}(\vec{x}))) &lt; d(\vec{x},\text{centr}(c_i)) \forall i \in [0, m] \wedge c_i \neq \text{clabel}(\vec{x})\\
+    0\quad\text{otherwise}
+\end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{centr}(c_i)\)</span> is the position of the centroid corresponding to all datapoints with class label <span class="math notranslate nohighlight">\(c_i\)</span>, <span class="math notranslate nohighlight">\(\text{clabel}(\vec{x})\)</span> gets 
+the class label of datapoint <span class="math notranslate nohighlight">\(\vec{x}\)</span> and <span class="math notranslate nohighlight">\(d(\vec{x},\vec{y})\)</span> is the distance between points <span class="math notranslate nohighlight">\(\vec{x}\)</span> and <span class="math notranslate nohighlight">\(\vec{y}\)</span>.</p>
+<section id="id15">
+<h4>Returns<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>distance_consistency<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0, 1]\)</span> yielded by the distance consistency metric.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.metric_distribution_consistency">
+<span class="sig-name descname"><span class="pre">metric_distribution_consistency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.metric_distribution_consistency" title="Permalink to this definition"></a></dt>
+<dd><p>Function to compute the distribution consistency metric which measures how well separated data with different class labels are in the projection.
+The functional definition reads as follows:</p>
+<div class="math notranslate nohighlight" id="equation-distribution-consistency">
+<span class="eqno">(3)<a class="headerlink" href="#equation-distribution-consistency" title="Permalink to this equation"></a></span>\[M_{\text{DC}} = 1 + \frac{1}{N\log_2(m)}\sum_{\vec{x}\in D}\sum_{i=0}^{m}\frac{p_{c_i}}{\sum_{i=0}^m p_{c_i}}\log_2\left(\frac{p_{c_i}}{\sum_{i=0}^m p_{c_i}}\right)\]</div>
+<p>In this definition, <span class="math notranslate nohighlight">\(N\)</span> is the number of samples in the dataset <span class="math notranslate nohighlight">\(D\)</span>, <span class="math notranslate nohighlight">\(m\)</span> is the number of unique class labels and <span class="math notranslate nohighlight">\(p_{c_i}\)</span> is the number 
+of datapoints of class <span class="math notranslate nohighlight">\(c_i\)</span> in the nearest neighbor set of a point <span class="math notranslate nohighlight">\(\vec{x}\)</span>. The way this metric is defined, it measures the average purity with respect 
+to the class labels in the neighborhood of all points in the dataset. To probe the purity it uses the Shannon entropy.</p>
+<section id="id16">
+<h4>Returns<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>distribution_consistency<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0, 1]\)</span> yielded by the distribution consistency metric.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.metric_jaccard_set_distance">
+<span class="sig-name descname"><span class="pre">metric_jaccard_set_distance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.metric_jaccard_set_distance" title="Permalink to this definition"></a></dt>
+<dd><p>Function to compute the Jaccard set distance metric which quantifies the <strong>proportion of overlap</strong> between the <span class="math notranslate nohighlight">\(k\)</span>-nearest 
+neighbor sets in the feature space and the projection space. The functional definition reads as follows:</p>
+<div class="math notranslate nohighlight" id="equation-jaccard">
+<span class="eqno">(4)<a class="headerlink" href="#equation-jaccard" title="Permalink to this equation"></a></span>\[M_J(k) = \frac{1}{N}\sum^{N}_{i=1}\frac{\left|\mathcal{N}^k_i \cap \mathcal{M}^k_i\right|}{\left|\mathcal{N}^k_i \cup \mathcal{M}^k_i\right|}\]</div>
+<p>In this definition, <span class="math notranslate nohighlight">\(N\)</span> is the number of samples in the dataset and <span class="math notranslate nohighlight">\(k\)</span> is the number of nearest neighbors 
+to consider. The set <span class="math notranslate nohighlight">\(\mathcal{N}^{k}_i\)</span> consists of the <span class="math notranslate nohighlight">\(k\)</span> nearest neighbors of sample <span class="math notranslate nohighlight">\(i\)</span> in original 
+data space. The set <span class="math notranslate nohighlight">\(\mathcal{M}^{k}_i\)</span> consists of the <span class="math notranslate nohighlight">\(k\)</span> nearest neighbors of sample <span class="math notranslate nohighlight">\(i\)</span> in the projection.</p>
+<section id="id17">
+<h4>Returns<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>jaccard_set_distance<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0,1]\)</span> yielded by the Jaccard set distance metric.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.metric_neighborhood_hit">
+<span class="sig-name descname"><span class="pre">metric_neighborhood_hit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.metric_neighborhood_hit" title="Permalink to this definition"></a></dt>
+<dd><p>Function to compute the neighborhood hit metric which measures how well separated datapoints with different labels are in the projection.
+The functional definition reads as follows:</p>
+<div class="math notranslate nohighlight" id="equation-neighborhood-hit">
+<span class="eqno">(5)<a class="headerlink" href="#equation-neighborhood-hit" title="Permalink to this equation"></a></span>\[M_{NH}(k) = \frac{1}{kN}\sum^{N}_{i=1}\left|\left\{j\in\mathcal{N}^{k}_{i} | l_j = l_i\right\}\right|\]</div>
+<p>In this definition, <span class="math notranslate nohighlight">\(N\)</span> is the number of samples in the dataset and <span class="math notranslate nohighlight">\(k\)</span> is the number of nearest neighbors 
+to consider. The set <span class="math notranslate nohighlight">\(\mathcal{N}^k_i\)</span> is the set of nearest neighbors of point <span class="math notranslate nohighlight">\(i\)</span> in the projection space and <span class="math notranslate nohighlight">\(l_i\)</span> denotes the 
+label of a point <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<section id="id18">
+<h4>Returns<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>normalized_stress<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0, \infty]\)</span> yielded by the normalized stress metric.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.metric_normalized_stress">
+<span class="sig-name descname"><span class="pre">metric_normalized_stress</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.metric_normalized_stress" title="Permalink to this definition"></a></dt>
+<dd><p>Function to compute the normalized stress metric which quantifies the respective <strong>mismatch</strong> between pointwise distances in the 
+feature space and the projection space. The functional definition reads as follows:</p>
+<div class="math notranslate nohighlight" id="equation-normalized-stress">
+<span class="eqno">(6)<a class="headerlink" href="#equation-normalized-stress" title="Permalink to this equation"></a></span>\[M_{\sigma}(k) = \frac{\sum^{N}_{i=1}\sum^{N}_{j=1}\left(\Delta^n(\mathbf{x}_i,\mathbf{x}_j)-\Delta^m(P\left(\mathbf{x}_i\right),P\left(\mathbf{x}_j)\right)\right)^2}{\sum^{N}_{i=1}\sum^{N}_{j=1}\Delta^n(\mathbf{x}_i,\mathbf{x}_j)^2}\]</div>
+<p>In this definition, <span class="math notranslate nohighlight">\(N\)</span> is the number of samples in the dataset. The function <span class="math notranslate nohighlight">\(\Delta^n(\mathbf{x}_i, \mathbf{x}_j)\)</span> returns
+the distance between points <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\(n\)</span>-dimensions.</p>
+<section id="id19">
+<h4>Returns<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>normalized_stress<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0, \infty]\)</span> yielded by the normalized stress metric.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.metric_shepard_goodness">
+<span class="sig-name descname"><span class="pre">metric_shepard_goodness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">return_shepard</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.metric_shepard_goodness" title="Permalink to this definition"></a></dt>
+<dd><p>Function that computes the Shepard goodness metric, i.e. the spearman rank correlation of the Shepard diagram.</p>
+<section id="id20">
+<h4>Parameters<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>return_shepard<span class="classifier">bool, default=False</span></dt><dd><p>Controls whether to return the Shepard diagram as well.</p>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h4>Returns<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>shepard_goodness<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0,1]\)</span> of the Shepard goodness metric.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.metric_trustworthiness">
+<span class="sig-name descname"><span class="pre">metric_trustworthiness</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.metric_trustworthiness" title="Permalink to this definition"></a></dt>
+<dd><p>Function to compute the trustworthiness metric which quantifies the <strong>proportion of false neighbors</strong> in the projection.
+The functional definition reads as follows:</p>
+<div class="math notranslate nohighlight" id="equation-trustworthiness">
+<span class="eqno">(7)<a class="headerlink" href="#equation-trustworthiness" title="Permalink to this equation"></a></span>\[M_t(k) = 1 - \frac{2}{Nk(2N-3k-1)}\sum^{N}_{i=1}\sum_{j\in \mathcal{U}_i^k}(r(i,j) - k)\]</div>
+<p>In this definition, <span class="math notranslate nohighlight">\(N\)</span> is the number of samples in the dataset and <span class="math notranslate nohighlight">\(k\)</span> is the number of nearest neighbors 
+to consider and should always be smaller than <span class="math notranslate nohighlight">\(N / 2\)</span> for the metric to be properly normalized.
+The set <span class="math notranslate nohighlight">\(\mathcal{U}_i^k\)</span> consists of the <span class="math notranslate nohighlight">\(k\)</span> nearest neighbors of sample <span class="math notranslate nohighlight">\(i\)</span> in the projection that are <strong>not</strong> 
+amongst the <span class="math notranslate nohighlight">\(k\)</span> nearest neighbors of <span class="math notranslate nohighlight">\(i\)</span> in the original space. The quantity <span class="math notranslate nohighlight">\(r(i,j)\)</span> specifies the rank of 
+the point <span class="math notranslate nohighlight">\(j\)</span> when feature vectors are ordered based on their distance to point <span class="math notranslate nohighlight">\(i\)</span> in the original space.</p>
+<section id="id22">
+<h4>Returns<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>trustworthiness<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0,1]\)</span> yielded by the trustworthiness metric.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.print_summary">
+<span class="sig-name descname"><span class="pre">print_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file=&lt;_io.TextIOWrapper</span> <span class="pre">name='&lt;stdout&gt;'</span> <span class="pre">mode='w'</span> <span class="pre">encoding='utf-8'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end='\n'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.print_summary" title="Permalink to this definition"></a></dt>
+<dd><p>Function to print a summary of the computed metrics.</p>
+<section id="id23">
+<h4>Parameters<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h4>
+<p>file : file-like object (stream), default=sys.stdout</p>
+<p>end : string appended after the last value, default=’\n’</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.shepard_diagram">
+<span class="sig-name descname"><span class="pre">shepard_diagram</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.shepard_diagram" title="Permalink to this definition"></a></dt>
+<dd><p>Function that returns the Shepard diagram.</p>
+<section id="id24">
+<h4>Returns<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>shepard_diagram<span class="classifier">array-like (n_pairs, 2)</span></dt><dd><p>An array of pairwise distances between points in the original data space and the projection.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+<section id="module-SHARC.nn_models">
+<span id="nnp-models"></span><h2>NNP Models<a class="headerlink" href="#module-SHARC.nn_models" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.nn_models.DenseBlock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.nn_models.</span></span><span class="sig-name descname"><span class="pre">DenseBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.nn_models.DenseBlock" title="Permalink to this definition"></a></dt>
+<dd><p>Class constructor of a dense block.</p>
+<section id="id25">
+<h3>Parameters<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>units<span class="classifier">int (required)</span></dt><dd><p>Number of units in the Dense layer.</p>
+</dd>
+<dt>momentum<span class="classifier">float between [0,1], default=0.6 (optional)</span></dt><dd><p>Momentum parameter of the batch normalization layer. Should be close to 1 for slow learning of batch normalization layer. Typically somewhere between 0.6 and 0.85 works fine for big batches.</p>
+</dd>
+<dt>alpha<span class="classifier">float, default=0.3 (optional)</span></dt><dd><p>Negative slope coefficient of leaky ReLU layer.</p>
+</dd>
+<dt>rate<span class="classifier">float between [0,1], default=0 (optional)</span></dt><dd><p>Dropout rate.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.nn_models.DenseBlock.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.nn_models.DenseBlock.call" title="Permalink to this definition"></a></dt>
+<dd><p>Calls the model on new inputs and returns the outputs as tensors.</p>
+<p>In this case <cite>call()</cite> just reapplies
+all ops in the graph to the new inputs
+(e.g. build a new computational graph from the provided inputs).</p>
+<p>Note: This method should not be called directly. It is only meant to be
+overridden when subclassing <cite>tf.keras.Model</cite>.
+To call a model on an input, always use the <cite>__call__()</cite> method,
+i.e. <cite>model(inputs)</cite>, which relies on the underlying <cite>call()</cite> method.</p>
+<dl>
+<dt>Args:</dt><dd><p>inputs: Input tensor, or dict/list/tuple of input tensors.
+training: Boolean or boolean scalar tensor, indicating whether to</p>
+<blockquote>
+<div><p>run the <cite>Network</cite> in training mode or inference mode.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>mask: A mask or list of masks. A mask can be either a boolean tensor</dt><dd><p>or None (no mask). For more details, check the guide
+[here](<a class="reference external" href="https://www.tensorflow.org/guide/keras/masking_and_padding">https://www.tensorflow.org/guide/keras/masking_and_padding</a>).</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>A tensor if there is a single output, or
+a list of tensors if there are more than one outputs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.nn_models.NNPModelBackboneV1">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.nn_models.</span></span><span class="sig-name descname"><span class="pre">NNPModelBackboneV1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.nn_models.NNPModelBackboneV1" title="Permalink to this definition"></a></dt>
+<dd><p>NNP model backbone class version 1.</p>
+<section id="id26">
+<h3>Parameters<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>D1_units<span class="classifier">int (required)</span></dt><dd><p>Number of units in the first dense layer of the network. Should not be less than 4!</p>
+</dd>
+<dt>**kwargs<span class="classifier">(optional)</span></dt><dd><p>Additional keyword arguments to be passed to each block in this backbone.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.nn_models.NNPModelBackboneV1.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.nn_models.NNPModelBackboneV1.call" title="Permalink to this definition"></a></dt>
+<dd><p>Calls the model on new inputs and returns the outputs as tensors.</p>
+<p>In this case <cite>call()</cite> just reapplies
+all ops in the graph to the new inputs
+(e.g. build a new computational graph from the provided inputs).</p>
+<p>Note: This method should not be called directly. It is only meant to be
+overridden when subclassing <cite>tf.keras.Model</cite>.
+To call a model on an input, always use the <cite>__call__()</cite> method,
+i.e. <cite>model(inputs)</cite>, which relies on the underlying <cite>call()</cite> method.</p>
+<dl>
+<dt>Args:</dt><dd><p>inputs: Input tensor, or dict/list/tuple of input tensors.
+training: Boolean or boolean scalar tensor, indicating whether to</p>
+<blockquote>
+<div><p>run the <cite>Network</cite> in training mode or inference mode.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>mask: A mask or list of masks. A mask can be either a boolean tensor</dt><dd><p>or None (no mask). For more details, check the guide
+[here](<a class="reference external" href="https://www.tensorflow.org/guide/keras/masking_and_padding">https://www.tensorflow.org/guide/keras/masking_and_padding</a>).</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>A tensor if there is a single output, or
+a list of tensors if there are more than one outputs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.nn_models.NNPModelBackboneV2">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.nn_models.</span></span><span class="sig-name descname"><span class="pre">NNPModelBackboneV2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.nn_models.NNPModelBackboneV2" title="Permalink to this definition"></a></dt>
+<dd><p>NNP model backbone class version 2.</p>
+<section id="id27">
+<h3>Parameters<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>D1_units<span class="classifier">int (required)</span></dt><dd><p>Number of units in the first dense layer of the network. Should not be less than 4!</p>
+</dd>
+<dt>**kwargs<span class="classifier">(optional)</span></dt><dd><p>Additional keyword arguments to be passed to each block in this backbone.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.nn_models.NNPModelBackboneV2.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.nn_models.NNPModelBackboneV2.call" title="Permalink to this definition"></a></dt>
+<dd><p>Calls the model on new inputs and returns the outputs as tensors.</p>
+<p>In this case <cite>call()</cite> just reapplies
+all ops in the graph to the new inputs
+(e.g. build a new computational graph from the provided inputs).</p>
+<p>Note: This method should not be called directly. It is only meant to be
+overridden when subclassing <cite>tf.keras.Model</cite>.
+To call a model on an input, always use the <cite>__call__()</cite> method,
+i.e. <cite>model(inputs)</cite>, which relies on the underlying <cite>call()</cite> method.</p>
+<dl>
+<dt>Args:</dt><dd><p>inputs: Input tensor, or dict/list/tuple of input tensors.
+training: Boolean or boolean scalar tensor, indicating whether to</p>
+<blockquote>
+<div><p>run the <cite>Network</cite> in training mode or inference mode.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>mask: A mask or list of masks. A mask can be either a boolean tensor</dt><dd><p>or None (no mask). For more details, check the guide
+[here](<a class="reference external" href="https://www.tensorflow.org/guide/keras/masking_and_padding">https://www.tensorflow.org/guide/keras/masking_and_padding</a>).</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>A tensor if there is a single output, or
+a list of tensors if there are more than one outputs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SHARC.nn_models.construct_NNPModel">
+<span class="sig-prename descclassname"><span class="pre">SHARC.nn_models.</span></span><span class="sig-name descname"><span class="pre">construct_NNPModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_input_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_activation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sigmoid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.nn_models.construct_NNPModel" title="Permalink to this definition"></a></dt>
+<dd><p>Function to construct a NNP (neural network projection) model.</p>
+<section id="id28">
+<h3>Parameters<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>num_input_features<span class="classifier">int</span></dt><dd><p>The number of input features.</p>
+</dd>
+<dt>output_dimensions<span class="classifier">int, default=2 (optional)</span></dt><dd><p>The number of output dimensions of the projection.</p>
+</dd>
+<dt>output_activation<span class="classifier">str or function, default=”sigmoid” (optional)</span></dt><dd><p>Activation function to use.</p>
+</dd>
+<dt>version<span class="classifier">int, default=2 (optional)</span></dt><dd><p>Version of the NNP model backbone to use.</p>
+</dd>
+<dt>**kwargs<span class="classifier">(optional)</span></dt><dd><p>Additional keyword arguments will be passed to the NNP model backbone.</p>
+</dd>
+</dl>
+</section>
+<section id="id29">
+<h3>Returns<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>model<span class="classifier">tensorflow Model</span></dt><dd><p>A <cite>tf.keras.Model</cite> instance.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-SHARC.nn_training_utils">
+<span id="nnp-training-utilities"></span><h2>NNP Training Utilities<a class="headerlink" href="#module-SHARC.nn_training_utils" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="SHARC.nn_training_utils.train_nnp">
+<span class="sig-prename descclassname"><span class="pre">SHARC.nn_training_utils.</span></span><span class="sig-name descname"><span class="pre">train_nnp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./NNP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.nn_training_utils.train_nnp" title="Permalink to this definition"></a></dt>
+<dd><p>Function that handles the training of the NNP model.</p>
+<section id="id30">
+<h3>Parameters<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>X<span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>Feature space training dataset.</p>
+</dd>
+<dt>Y_true<span class="classifier">array-like, shape (n_samples, n_embedding_dimensions)</span></dt><dd><p>Projection space training dataset.</p>
+</dd>
+<dt>model<span class="classifier">tensorflow Model</span></dt><dd><p>The <cite>tf.keras.Model</cite> instance to train.</p>
+</dd>
+<dt>loss_function :</dt><dd><p>A Tensorflow compatible loss function, i.e. it supports auto differentiation, to use for optimization.</p>
+</dd>
+<dt>optimizer<span class="classifier">tensorflow optimizer</span></dt><dd><p>The <cite>tf.keras.optimizer</cite> to use for optimization.</p>
+</dd>
+<dt>labels<span class="classifier">array-like, shape (n_samples,), default = None</span></dt><dd><p>An array containing the labels (as numeric values) corresponding to each sample in <cite>X</cite> and <cite>Y_true</cite>.
+When provided it is used to stratify the cross validation set.</p>
+</dd>
+<dt>epochs<span class="classifier">int, default = 10 (optional)</span></dt><dd><p>Maximum number of epochs.</p>
+</dd>
+<dt>validation_ratio<span class="classifier">float, default = 0.25 (optional)</span></dt><dd><p>Fraction of the dataset to use for cross validation at each training epoch.</p>
+</dd>
+<dt>save_path<span class="classifier">str, default = “./NNP” (optional)</span></dt><dd><p>Path the save the checkpoints, training history and trained model to.</p>
+</dd>
+<dt>verbose<span class="classifier">bool, default = False (optional)</span></dt><dd><p>Controls the verbosity.</p>
+</dd>
+</dl>
+</section>
+<section id="id31">
+<h3>Returns<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>train_loss<span class="classifier">numpy.ndarray, shape (epochs,)</span></dt><dd><p>Training loss at each epoch.</p>
+</dd>
+<dt>valid_loss<span class="classifier">numpy.ndarray, shape (epochs,)</span></dt><dd><p>Validatation loss at each epoch.</p>
+</dd>
+<dt>pred_train_loss<span class="classifier">numpy.ndarray, shape (epochs,)</span></dt><dd><p>Inferential training loss at each epoch.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-SHARC.loss_functions">
+<span id="loss-function-definitions"></span><h2>Loss Function Definitions<a class="headerlink" href="#module-SHARC.loss_functions" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.loss_functions.AlternativeMeanAbsoluteError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.loss_functions.</span></span><span class="sig-name descname"><span class="pre">AlternativeMeanAbsoluteError</span></span><a class="headerlink" href="#SHARC.loss_functions.AlternativeMeanAbsoluteError" title="Permalink to this definition"></a></dt>
+<dd><p>Class for computing the Alternative Median Absolute Error (AMedAE) for predictions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.loss_functions.AlternativeMeanAbsoluteError.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.loss_functions.AlternativeMeanAbsoluteError.call" title="Permalink to this definition"></a></dt>
+<dd><section id="id32">
+<h3>Parameters<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>y_true:</dt><dd><p>Ground truth values. shape = <cite>[batch_size, d0, .. dN]</cite>, except sparse loss functions such as sparse categorical crossentropy where shape = <cite>[batch_size, d0, .. dN-1]</cite></p>
+</dd>
+<dt>y_pred:</dt><dd><p>The predicted values. shape = <cite>[batch_size, d0, .. dN]</cite></p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.loss_functions.AlternativeMeanSquaredError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.loss_functions.</span></span><span class="sig-name descname"><span class="pre">AlternativeMeanSquaredError</span></span><a class="headerlink" href="#SHARC.loss_functions.AlternativeMeanSquaredError" title="Permalink to this definition"></a></dt>
+<dd><p>Class for computing the Alternative Mean Squared Error (AMSE) for predictions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.loss_functions.AlternativeMeanSquaredError.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.loss_functions.AlternativeMeanSquaredError.call" title="Permalink to this definition"></a></dt>
+<dd><section id="id33">
+<h3>Parameters<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>y_true:</dt><dd><p>Ground truth values. shape = <cite>[batch_size, d0, .. dN]</cite>, except sparse loss functions such as sparse categorical crossentropy where shape = <cite>[batch_size, d0, .. dN-1]</cite></p>
+</dd>
+<dt>y_pred:</dt><dd><p>The predicted values. shape = <cite>[batch_size, d0, .. dN]</cite></p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.loss_functions.AlternativeMedianAbsoluteError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.loss_functions.</span></span><span class="sig-name descname"><span class="pre">AlternativeMedianAbsoluteError</span></span><a class="headerlink" href="#SHARC.loss_functions.AlternativeMedianAbsoluteError" title="Permalink to this definition"></a></dt>
+<dd><p>Class for computing the Alternative Median Absolute Error (AMedAE) for predictions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.loss_functions.AlternativeMedianAbsoluteError.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.loss_functions.AlternativeMedianAbsoluteError.call" title="Permalink to this definition"></a></dt>
+<dd><section id="id34">
+<h3>Parameters<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>y_true:</dt><dd><p>Ground truth values. shape = <cite>[batch_size, d0, .. dN]</cite>, except sparse loss functions such as sparse categorical crossentropy where shape = <cite>[batch_size, d0, .. dN-1]</cite></p>
+</dd>
+<dt>y_pred:</dt><dd><p>The predicted values. shape = <cite>[batch_size, d0, .. dN]</cite></p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.loss_functions.AlternativeMedianSquaredError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.loss_functions.</span></span><span class="sig-name descname"><span class="pre">AlternativeMedianSquaredError</span></span><a class="headerlink" href="#SHARC.loss_functions.AlternativeMedianSquaredError" title="Permalink to this definition"></a></dt>
+<dd><p>Class for computing the Alternative Median Squared Error (AMedSE) for predictions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.loss_functions.AlternativeMedianSquaredError.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.loss_functions.AlternativeMedianSquaredError.call" title="Permalink to this definition"></a></dt>
+<dd><section id="id35">
+<h3>Parameters<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>y_true:</dt><dd><p>Ground truth values. shape = <cite>[batch_size, d0, .. dN]</cite>, except sparse loss functions such as sparse categorical crossentropy where shape = <cite>[batch_size, d0, .. dN-1]</cite></p>
+</dd>
+<dt>y_pred:</dt><dd><p>The predicted values. shape = <cite>[batch_size, d0, .. dN]</cite></p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.loss_functions.MedianAbsoluteError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.loss_functions.</span></span><span class="sig-name descname"><span class="pre">MedianAbsoluteError</span></span><a class="headerlink" href="#SHARC.loss_functions.MedianAbsoluteError" title="Permalink to this definition"></a></dt>
+<dd><p>Class for computing the Median Absolute Error (MedAE) for predictions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.loss_functions.MedianAbsoluteError.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.loss_functions.MedianAbsoluteError.call" title="Permalink to this definition"></a></dt>
+<dd><section id="id36">
+<h3>Parameters<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>y_true:</dt><dd><p>Ground truth values. shape = <cite>[batch_size, d0, .. dN]</cite>, except sparse loss functions such as sparse categorical crossentropy where shape = <cite>[batch_size, d0, .. dN-1]</cite></p>
+</dd>
+<dt>y_pred:</dt><dd><p>The predicted values. shape = <cite>[batch_size, d0, .. dN]</cite></p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.loss_functions.MedianSquaredError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.loss_functions.</span></span><span class="sig-name descname"><span class="pre">MedianSquaredError</span></span><a class="headerlink" href="#SHARC.loss_functions.MedianSquaredError" title="Permalink to this definition"></a></dt>
+<dd><p>Class for computing the Median Squared Error (MedSE) for predictions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.loss_functions.MedianSquaredError.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.loss_functions.MedianSquaredError.call" title="Permalink to this definition"></a></dt>
+<dd><section id="id37">
+<h3>Parameters<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>y_true:</dt><dd><p>Ground truth values. shape = <cite>[batch_size, d0, .. dN]</cite>, except sparse loss functions such as sparse categorical crossentropy where shape = <cite>[batch_size, d0, .. dN-1]</cite></p>
+</dd>
+<dt>y_pred:</dt><dd><p>The predicted values. shape = <cite>[batch_size, d0, .. dN]</cite></p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-SHARC.classifiers">
+<span id="sdr-nnp-classifier"></span><h2>SDR-NNP Classifier<a class="headerlink" href="#module-SHARC.classifiers" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.classifiers.SDRNNPClassifier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.classifiers.</span></span><span class="sig-name descname"><span class="pre">SDRNNPClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nnp_model_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.classifiers.SDRNNPClassifier" title="Permalink to this definition"></a></dt>
+<dd><p>A classifier which implements SDR-NNP based classification.</p>
+<section id="id38">
+<h3>Parameters<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>nnp_model_path<span class="classifier">str, default=None</span></dt><dd><p>Path to the stored SDR-NNP model (required).</p>
+</dd>
+<dt>classifier<span class="classifier">object, default=None</span></dt><dd><p>Classifier used for the final classification (required).</p>
+</dd>
+</dl>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>X_<span class="classifier">ndarray, shape (n_samples, n_features)</span></dt><dd><p>The input passed during <a class="reference internal" href="#SHARC.classifiers.SDRNNPClassifier.fit" title="SHARC.classifiers.SDRNNPClassifier.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
+</dd>
+<dt>y_<span class="classifier">ndarray, shape (n_samples,)</span></dt><dd><p>The labels passed during <a class="reference internal" href="#SHARC.classifiers.SDRNNPClassifier.fit" title="SHARC.classifiers.SDRNNPClassifier.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
+</dd>
+<dt>classes_<span class="classifier">ndarray, shape (n_classes,)</span></dt><dd><p>The classes seen at <a class="reference internal" href="#SHARC.classifiers.SDRNNPClassifier.fit" title="SHARC.classifiers.SDRNNPClassifier.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.classifiers.SDRNNPClassifier.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.classifiers.SDRNNPClassifier.fit" title="Permalink to this definition"></a></dt>
+<dd><p>Fit the SDR-NNP based classifier from the training dataset.</p>
+<section id="id39">
+<h4>Parameters<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>X<span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>The training input samples.</p>
+</dd>
+<dt>y<span class="classifier">array-like, shape (n_samples,)</span></dt><dd><p>The target values. An array of int.</p>
+</dd>
+</dl>
+</section>
+<section id="id40">
+<h4>Returns<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>self<span class="classifier">object</span></dt><dd><p>Returns self.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.classifiers.SDRNNPClassifier.plot_classifier_decision_boundaries">
+<span class="sig-name descname"><span class="pre">plot_classifier_decision_boundaries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_resolution=200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_method='contourf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap=&lt;matplotlib.colors.LinearSegmentedColormap</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha=0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.classifiers.SDRNNPClassifier.plot_classifier_decision_boundaries" title="Permalink to this definition"></a></dt>
+<dd><p>Plot decision boundaries for the trained classifier.</p>
+<section id="id41">
+<h4>Parameters<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>ax<span class="classifier">matplotlib Axes, default=None</span></dt><dd><p>Axes object to plot on. If <cite>None</cite>, a new figure and axes is created.</p>
+</dd>
+<dt>**kwargs<span class="classifier"></span></dt><dd><p>Additional arguments are passed to <cite>sklearn.inspection.DecisionBoundaryDisplay.from_estimator()</cite>.</p>
+</dd>
+</dl>
+</section>
+<section id="id42">
+<h4>Returns<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>display<span class="classifier">DecisionBoundaryDisplay</span></dt><dd><p>Object storing the result.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.classifiers.SDRNNPClassifier.plot_projection">
+<span class="sig-name descname"><span class="pre">plot_projection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.classifiers.SDRNNPClassifier.plot_projection" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the SDR-NNP projection of the input data X.</p>
+<section id="id43">
+<h4>Parameters<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>X<span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>The input samples.</p>
+</dd>
+<dt>y<span class="classifier">array-like, shape (n_samples,), default=None</span></dt><dd><p>The target values. An array of int.</p>
+</dd>
+<dt>ax<span class="classifier">matplotlib Axes, default=None</span></dt><dd><p>Axes object to plot on. If <cite>None</cite>, a new figure and axes is created.</p>
+</dd>
+</dl>
+</section>
+<section id="id44">
+<h4>Returns<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>ax<span class="classifier">matplotlib Axes</span></dt><dd><p>Axes object that was plotted on.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.classifiers.SDRNNPClassifier.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.classifiers.SDRNNPClassifier.predict" title="Permalink to this definition"></a></dt>
+<dd><p>Predict the class labels for the provided data.</p>
+<section id="id45">
+<h4>Parameters<a class="headerlink" href="#id45" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>X<span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>The input samples.</p>
+</dd>
+</dl>
+</section>
+<section id="id46">
+<h4>Returns<a class="headerlink" href="#id46" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>y<span class="classifier">ndarray, shape (n_samples,)</span></dt><dd><p>Class labels for each data sample.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SHARC.classifiers.SDRNNPClassifier.predict_proba">
+<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.classifiers.SDRNNPClassifier.predict_proba" title="Permalink to this definition"></a></dt>
+<dd><p>Return probability estimates for the test data X.</p>
+<section id="id47">
+<h4>Parameters<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>X<span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>The input samples.</p>
+</dd>
+</dl>
+</section>
+<section id="id48">
+<h4>Returns<a class="headerlink" href="#id48" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>y<span class="classifier">ndarray, shape (n_samples,)</span></dt><dd><p>Class labels for each data sample.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+<section id="module-SHARC.consolidation">
+<span id="consolidation-methods"></span><h2>Consolidation Methods<a class="headerlink" href="#module-SHARC.consolidation" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="SHARC.consolidation.alternative_consolidation">
+<span class="sig-prename descclassname"><span class="pre">SHARC.consolidation.</span></span><span class="sig-name descname"><span class="pre">alternative_consolidation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.consolidation.alternative_consolidation" title="Permalink to this definition"></a></dt>
+<dd><p>When the predictions by the different classifiers are in disagreement the sample is assigned to the post-consolidation outlier class.</p>
+<section id="id49">
+<h3>Parameters<a class="headerlink" href="#id49" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>predictions<span class="classifier">array-like, shape (n_classifiers, n_samples)</span></dt><dd><p>The predictions given by each classifier.</p>
+</dd>
+</dl>
+</section>
+<section id="id50">
+<h3>Returns<a class="headerlink" href="#id50" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>labels<span class="classifier">array-like, shape (n_samples,)</span></dt><dd><p>The consolidated labels.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SHARC.consolidation.average_probability_consolidation">
+<span class="sig-prename descclassname"><span class="pre">SHARC.consolidation.</span></span><span class="sig-name descname"><span class="pre">average_probability_consolidation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">probabilities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_lut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.consolidation.average_probability_consolidation" title="Permalink to this definition"></a></dt>
+<dd><p>Consolidation is done by averaging the probabilities for each class returned by each classifier.
+Samples are labelled by the class with the highest average probability.</p>
+<section id="id51">
+<h3>Parameters<a class="headerlink" href="#id51" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>probabilities<span class="classifier">array-like, shape (n_classifiers, n_samples, n_classes)</span></dt><dd><p>The probabilities predicted for each class by each classifier.</p>
+</dd>
+<dt>threshold<span class="classifier">float, default=None (optional)</span></dt><dd><p>Optional probability threshold. Whenever, the highest average probability falls below the given threshold value the sample is classified as an outlier.</p>
+</dd>
+<dt>label_lut<span class="classifier">array-like, shape (n_classes,)</span></dt><dd><p>Lookup table for the labels.</p>
+</dd>
+</dl>
+</section>
+<section id="id52">
+<h3>Returns<a class="headerlink" href="#id52" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>labels<span class="classifier">array-like, shape (n_samples,)</span></dt><dd><p>The consolidated labels.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SHARC.consolidation.lowest_entropy_consolidation">
+<span class="sig-prename descclassname"><span class="pre">SHARC.consolidation.</span></span><span class="sig-name descname"><span class="pre">lowest_entropy_consolidation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">probabilities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_lut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_entropies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_selected_classifiers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.consolidation.lowest_entropy_consolidation" title="Permalink to this definition"></a></dt>
+<dd><p>For each sample use the classification of the classifier with lowest entropy in the distribution of class labels.</p>
+<section id="id53">
+<h3>Parameters<a class="headerlink" href="#id53" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>probabilities<span class="classifier">array-like, shape (n_classifiers, n_samples, n_classes)</span></dt><dd><p>The probabilities predicted for each class by each classifier.</p>
+</dd>
+<dt>threshold<span class="classifier">float, default=None</span></dt><dd><p>The entropy threshold. Samples with a post-consolidation entropy <em>above</em> this threshold with be classified as an outlier. 
+If <cite>None</cite> no thresholding will be applied.</p>
+</dd>
+<dt>label_lut<span class="classifier">array-like, shape (n_classes,)</span></dt><dd><p>Lookup table for the labels.</p>
+</dd>
+</dl>
+</section>
+<section id="id54">
+<h3>Returns<a class="headerlink" href="#id54" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>labels<span class="classifier">array-like, shape (n_samples,)</span></dt><dd><p>The consolidated labels.</p>
+</dd>
+<dt>entropies: array-like, shape (n_classifiers, n_samples)</dt><dd><p>The computed entropy in the probabilities predicted for each class by each classifier. Only returned if <cite>return_entropies=True</cite>.</p>
+</dd>
+<dt>selected_classification: array-like, shape (n_samples)</dt><dd><p>An array consisting of indices corresponding to the classifiers that were used in the final classification of each sample.
+Only returned if <cite>return_selected_classifiers=True</cite></p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SHARC.consolidation.majority_vote_consolidation">
+<span class="sig-prename descclassname"><span class="pre">SHARC.consolidation.</span></span><span class="sig-name descname"><span class="pre">majority_vote_consolidation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.consolidation.majority_vote_consolidation" title="Permalink to this definition"></a></dt>
+<dd><p>Consolidation is done through a majority vote. When the vote is indecisive the sample is classified as an outlier.</p>
+<section id="id55">
+<h3>Parameters<a class="headerlink" href="#id55" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>predictions<span class="classifier">array-like, shape (n_classifiers, n_samples)</span></dt><dd><p>The predictions given by each classifier.</p>
+</dd>
+</dl>
+</section>
+<section id="id56">
+<h3>Returns<a class="headerlink" href="#id56" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>labels<span class="classifier">array-like, shape (n_samples,)</span></dt><dd><p>The consolidated labels.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SHARC.consolidation.multiplied_probability_consolidation">
+<span class="sig-prename descclassname"><span class="pre">SHARC.consolidation.</span></span><span class="sig-name descname"><span class="pre">multiplied_probability_consolidation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">probabilities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_lut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.consolidation.multiplied_probability_consolidation" title="Permalink to this definition"></a></dt>
+<dd><p>Consolidation is done by multiplying the probabilities for each class returned by each classifier.
+Samples are labelled by the class with the highest multiplied probability.</p>
+<section id="id57">
+<h3>Parameters<a class="headerlink" href="#id57" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>probabilities<span class="classifier">array-like, shape (n_classifiers, n_samples, n_classes)</span></dt><dd><p>The probabilities predicted for each class by each classifier.</p>
+</dd>
+<dt>threshold<span class="classifier">float, default=None (optional)</span></dt><dd><p>Optional probability threshold. Whenever, the highest multiplied and normalized probability falls below the given threshold value the sample is classified as an outlier.</p>
+</dd>
+<dt>label_lut<span class="classifier">array-like, shape (n_classes,)</span></dt><dd><p>Lookup table for the labels.</p>
+</dd>
+</dl>
+</section>
+<section id="id58">
+<h3>Returns<a class="headerlink" href="#id58" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>labels<span class="classifier">array-like, shape (n_samples,)</span></dt><dd><p>The consolidated labels.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-SHARC.utils">
+<span id="additional-utilities"></span><h2>Additional Utilities<a class="headerlink" href="#module-SHARC.utils" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="SHARC.utils.insertColors">
+<span class="sig-prename descclassname"><span class="pre">SHARC.utils.</span></span><span class="sig-name descname"><span class="pre">insertColors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.utils.insertColors" title="Permalink to this definition"></a></dt>
+<dd><p>Combines magnitudes in astropy Table into colours and adds them to the table. The astropy Table is modified in-place.</p>
+<section id="id59">
+<h3>Parameters<a class="headerlink" href="#id59" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>table<span class="classifier">astropy Table</span></dt><dd><p>Table containing the magnitudes to be combined into colours.</p>
+</dd>
+<dt>colors<span class="classifier">iterable</span></dt><dd><p>An array or list containing colours as strings with magnitudes corresponding to column names in the astropy Table.</p>
+</dd>
+</dl>
+</section>
+<section id="id60">
+<h3>Returns<a class="headerlink" href="#id60" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>table<span class="classifier">astropy Table</span></dt><dd><p>Modified astropy Table with colours added as columns to the end of the original Table.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SHARC.utils.writeDataset">
+<span class="sig-prename descclassname"><span class="pre">SHARC.utils.</span></span><span class="sig-name descname"><span class="pre">writeDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.utils.writeDataset" title="Permalink to this definition"></a></dt>
+<dd><p>Writes an astropy Table to a fits file.</p>
+<section id="id61">
+<h3>Parameters<a class="headerlink" href="#id61" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>table<span class="classifier">astropy Table</span></dt><dd><p>Table to be written to file.</p>
+</dd>
+<dt>filename<span class="classifier">str</span></dt><dd><p>Filename of the file the astropy Table needs to be written to.</p>
+</dd>
+<dt>verbose<span class="classifier">bool, default = True</span></dt><dd><p>Variable controlling the verbosity of this function.</p>
+</dd>
+<dt>overwrite<span class="classifier">bool, default = False</span></dt><dd><p>Variable controlling whether to overwrite any existing file. When the file already exists and <cite>overwrite=False</cite> the dataset won’t be written and the function will exit.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-SHARC.plot_funcs">
+<span id="plot-functions"></span><h2>Plot Functions<a class="headerlink" href="#module-SHARC.plot_funcs" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="SHARC.plot_funcs.CustomConfusionMatrixDisplay">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SHARC.plot_funcs.</span></span><span class="sig-name descname"><span class="pre">CustomConfusionMatrixDisplay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">confusion_matrix</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.plot_funcs.CustomConfusionMatrixDisplay" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to SHARC’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Marten Lourens.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    The logo was created with the assistance of <a href="https://openai.com/product/dall-e-2">DALL·E 2</a>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
