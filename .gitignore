@@ -14,3 +14,6 @@ CPz_analysis
 loss_function_performance
 runs
 tests
+
+# Ignore documentation folder for GitLab
+public
