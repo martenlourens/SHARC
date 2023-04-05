@@ -16,7 +16,7 @@ class Metrics(object):
         Values are passed to `scipy.spatial.distance.pdist`.
     k : int, default=7
         Number of nearest neighbors to consider when computing the various metrics.
-        Used by `metric_trustworthiness`, `metric_continuity`, `metric_jaccard_set_distance`, `metric_neighborhood_hit` and `metric_distribution_consistency`.
+        Used by `metric_trustworthiness`, `metric_continuity`, `metric_jaccard_similarity_coefficient`, `metric_neighborhood_hit` and `metric_distribution_consistency`.
     
     """
     def __init__(self, metric=["euclidean", "euclidean"], k = 7):
@@ -33,7 +33,7 @@ class Metrics(object):
         # local neighborhood metrics
         self._M_trustworthiness = None
         self._M_continuity = None
-        self._M_jaccard_set_distance = None
+        self._M_jaccard_similarity_coefficient = None
 
         # distance preservation metrics
         self._M_normalized_stress = None
@@ -115,7 +115,7 @@ class Metrics(object):
         # local neighborhood metrics
         self._M_trustworthiness = None
         self._M_continuity = None
-        self._M_jaccard_set_distance = None
+        self._M_jaccard_similarity_coefficient = None
 
         # distance preservation metrics
         self._M_normalized_stress = None
@@ -213,9 +213,9 @@ class Metrics(object):
         self._M_continuity = 1 - norm * Z
         return self._M_continuity
 
-    # Jaccard set distance metric
-    def metric_jaccard_set_distance(self):
-        r""" Function to compute the Jaccard set distance metric which quantifies the **proportion of overlap** between the :math:`k`-nearest 
+    # Jaccard similarity coefficient metric
+    def metric_jaccard_similarity_coefficient(self):
+        r""" Function to compute the Jaccard similarity coefficient metric which quantifies the **proportion of overlap** between the :math:`k`-nearest 
         neighbor sets in the feature space and the projection space. The functional definition reads as follows:
 
         .. math::
@@ -228,13 +228,13 @@ class Metrics(object):
 
         Returns
         -------
-        jaccard_set_distance : float
-            The value between :math:`[0,1]` yielded by the Jaccard set distance metric.
+        jaccard_similarity_coefficient : float
+            The value between :math:`[0,1]` yielded by the Jaccard similarity coefficient metric.
         
         """
         # check cache
-        if self._M_jaccard_set_distance is not None:
-            return self._M_jaccard_set_distance
+        if self._M_jaccard_similarity_coefficient is not None:
+            return self._M_jaccard_similarity_coefficient
 
         check_is_fitted(self, ['_N', '_nn_X', '_nn_Y'])
 
@@ -242,8 +242,8 @@ class Metrics(object):
         for i in range(self._N):
             Z += np.intersect1d(self._nn_Y[i][1:self.k+1], self._nn_X[i][1:self.k+1]).size / np.union1d(self._nn_Y[i][1:self.k+1], self._nn_X[i][1:self.k+1]).size
 
-        self._M_jaccard_set_distance = Z / self._N
-        return self._M_jaccard_set_distance
+        self._M_jaccard_similarity_coefficient = Z / self._N
+        return self._M_jaccard_similarity_coefficient
 
     # normalized stress metric
     def metric_normalized_stress(self):
@@ -519,7 +519,7 @@ class DR_MetricsV1(Metrics):
         Values are passed to `scipy.spatial.distance.pdist`.
     k : int, default=7
         Number of nearest neighbors to consider when computing the various metrics.
-        Used by `metric_trustworthiness`, `metric_continuity`, `metric_jaccard_set_distance`, `metric_neighborhood_hit` and `metric_distribution_consistency`.
+        Used by `metric_trustworthiness`, `metric_continuity`, `metric_jaccard_similarity_coefficient`, `metric_neighborhood_hit` and `metric_distribution_consistency`.
     
     """
     def __init__(self, metric=["euclidean", "euclidean"], k = 7):
@@ -564,7 +564,7 @@ class DR_MetricsV2(Metrics):
         Values are passed to `scipy.spatial.distance.pdist`.
     k : int, default=7
         Number of nearest neighbors to consider when computing the various metrics.
-        Used by `metric_trustworthiness`, `metric_continuity`, `metric_jaccard_set_distance`, `metric_neighborhood_hit` and `metric_distribution_consistency`.
+        Used by `metric_trustworthiness`, `metric_continuity`, `metric_jaccard_similarity_coefficient`, `metric_neighborhood_hit` and `metric_distribution_consistency`.
     
     """
     def __init__(self, metric=["euclidean", "euclidean"], k = 7):
@@ -598,7 +598,7 @@ class LGC_Metrics(Metrics):
         Values are passed to `scipy.spatial.distance.pdist`.
     k : int, default=7
         Number of nearest neighbors to consider when computing the various metrics.
-        Used by `metric_trustworthiness`, `metric_continuity`, `metric_jaccard_set_distance`, `metric_neighborhood_hit` and `metric_distribution_consistency`.
+        Used by `metric_trustworthiness`, `metric_continuity`, `metric_jaccard_similarity_coefficient`, `metric_neighborhood_hit` and `metric_distribution_consistency`.
     
     """
     def __init__(self, metric="euclidean", k = 7):        

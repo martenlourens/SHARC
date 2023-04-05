@@ -74,7 +74,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_continuity"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_continuity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_distance_consistency"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_distance_consistency()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_distribution_consistency"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_distribution_consistency()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_jaccard_set_distance"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_jaccard_set_distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_jaccard_similarity_coefficient"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_jaccard_similarity_coefficient()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_neighborhood_hit"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_neighborhood_hit()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_normalized_stress"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_normalized_stress()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#SHARC.metrics.Metrics.metric_shepard_goodness"><code class="docutils literal notranslate"><span class="pre">Metrics.metric_shepard_goodness()</span></code></a></li>
@@ -309,7 +309,7 @@ When a string is provided that same metric will be used for both the feature spa
 Values are passed to <cite>scipy.spatial.distance.pdist</cite>.</p>
 </dd>
 <dt>k<span class="classifier">int, default=7</span></dt><dd><p>Number of nearest neighbors to consider when computing the various metrics.
-Used by <cite>metric_trustworthiness</cite>, <cite>metric_continuity</cite>, <cite>metric_jaccard_set_distance</cite>, <cite>metric_neighborhood_hit</cite> and <cite>metric_distribution_consistency</cite>.</p>
+Used by <cite>metric_trustworthiness</cite>, <cite>metric_continuity</cite>, <cite>metric_jaccard_similarity_coefficient</cite>, <cite>metric_neighborhood_hit</cite> and <cite>metric_distribution_consistency</cite>.</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -343,7 +343,7 @@ When a string is provided that same metric will be used for both the feature spa
 Values are passed to <cite>scipy.spatial.distance.pdist</cite>.</p>
 </dd>
 <dt>k<span class="classifier">int, default=7</span></dt><dd><p>Number of nearest neighbors to consider when computing the various metrics.
-Used by <cite>metric_trustworthiness</cite>, <cite>metric_continuity</cite>, <cite>metric_jaccard_set_distance</cite>, <cite>metric_neighborhood_hit</cite> and <cite>metric_distribution_consistency</cite>.</p>
+Used by <cite>metric_trustworthiness</cite>, <cite>metric_continuity</cite>, <cite>metric_jaccard_similarity_coefficient</cite>, <cite>metric_neighborhood_hit</cite> and <cite>metric_distribution_consistency</cite>.</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -375,7 +375,7 @@ When a string is provided that same metric will be used for both the feature spa
 Values are passed to <cite>scipy.spatial.distance.pdist</cite>.</p>
 </dd>
 <dt>k<span class="classifier">int, default=7</span></dt><dd><p>Number of nearest neighbors to consider when computing the various metrics.
-Used by <cite>metric_trustworthiness</cite>, <cite>metric_continuity</cite>, <cite>metric_jaccard_set_distance</cite>, <cite>metric_neighborhood_hit</cite> and <cite>metric_distribution_consistency</cite>.</p>
+Used by <cite>metric_trustworthiness</cite>, <cite>metric_continuity</cite>, <cite>metric_jaccard_similarity_coefficient</cite>, <cite>metric_neighborhood_hit</cite> and <cite>metric_distribution_consistency</cite>.</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -406,7 +406,7 @@ When a string is provided that same metric will be used for both the feature spa
 Values are passed to <cite>scipy.spatial.distance.pdist</cite>.</p>
 </dd>
 <dt>k<span class="classifier">int, default=7</span></dt><dd><p>Number of nearest neighbors to consider when computing the various metrics.
-Used by <cite>metric_trustworthiness</cite>, <cite>metric_continuity</cite>, <cite>metric_jaccard_set_distance</cite>, <cite>metric_neighborhood_hit</cite> and <cite>metric_distribution_consistency</cite>.</p>
+Used by <cite>metric_trustworthiness</cite>, <cite>metric_continuity</cite>, <cite>metric_jaccard_similarity_coefficient</cite>, <cite>metric_neighborhood_hit</cite> and <cite>metric_distribution_consistency</cite>.</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -514,9 +514,9 @@ to the class labels in the neighborhood of all points in the dataset. To probe t
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="SHARC.metrics.Metrics.metric_jaccard_set_distance">
-<span class="sig-name descname"><span class="pre">metric_jaccard_set_distance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.metric_jaccard_set_distance" title="Permalink to this definition"></a></dt>
-<dd><p>Function to compute the Jaccard set distance metric which quantifies the <strong>proportion of overlap</strong> between the <span class="math notranslate nohighlight">\(k\)</span>-nearest 
+<dt class="sig sig-object py" id="SHARC.metrics.Metrics.metric_jaccard_similarity_coefficient">
+<span class="sig-name descname"><span class="pre">metric_jaccard_similarity_coefficient</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SHARC.metrics.Metrics.metric_jaccard_similarity_coefficient" title="Permalink to this definition"></a></dt>
+<dd><p>Function to compute the Jaccard similarity coefficient metric which quantifies the <strong>proportion of overlap</strong> between the <span class="math notranslate nohighlight">\(k\)</span>-nearest 
 neighbor sets in the feature space and the projection space. The functional definition reads as follows:</p>
 <div class="math notranslate nohighlight" id="equation-jaccard">
 <span class="eqno">(4)<a class="headerlink" href="#equation-jaccard" title="Permalink to this equation"></a></span>\[M_J(k) = \frac{1}{N}\sum^{N}_{i=1}\frac{\left|\mathcal{N}^k_i \cap \mathcal{M}^k_i\right|}{\left|\mathcal{N}^k_i \cup \mathcal{M}^k_i\right|}\]</div>
@@ -526,7 +526,7 @@ data space. The set <span class="math notranslate nohighlight">\(\mathcal{M}^{k}
 <section id="id17">
 <h4>Returns<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h4>
 <dl class="simple">
-<dt>jaccard_set_distance<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0,1]\)</span> yielded by the Jaccard set distance metric.</p>
+<dt>jaccard_similarity_coefficient<span class="classifier">float</span></dt><dd><p>The value between <span class="math notranslate nohighlight">\([0,1]\)</span> yielded by the Jaccard similarity coefficient metric.</p>
 </dd>
 </dl>
 </section>
